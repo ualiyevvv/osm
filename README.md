@@ -50,7 +50,7 @@ NetworkX (NX) - это библиотека на языке Python для соз
 
 ## Использование
 
-Описание всех тегов open street map доступны по ссылке: https://wiki.openstreetmap.org/wiki/Map_features .Ниже будут описаны теги необходимые для работы скриптов. 
+Описание всех тегов open street map доступны по ссылке: [Map Features](https://wiki.openstreetmap.org/wiki/Map_features). Ниже будут описаны теги необходимые для работы скриптов. 
 
 #### Получение графа дорог с помощью OSMnx
 
