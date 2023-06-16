@@ -1,5 +1,5 @@
 # OSM
-## Table of Contents
+## Содержание
 
 - [Теория](#Теория)
 - [Использование](#installation)
@@ -75,6 +75,11 @@ fig, ax = ox.plot_graph(graph, edge_color='white', edge_linewidth=0.5, node_size
 plt.show()
 ```
 
+Пример отображенного дорожного графа с `network_type="drive"` (только автомиобильные дороги):
+![Figure_Drive_Graph.png](./Figure_2.png "Пример отображенного дорожного графа 'только автомиобильные дороги'")
+
+Пример отображенного дорожного графа с `network_type="all"` (все типы дорог):
+![Figure_All_Graph.png](./Figure_1.png "Пример отображенного дорожного графа 'все типы дорог'")
 
 ### Получение объектов с помощью OSMnx
 
@@ -131,6 +136,8 @@ fig, ax = ox.plot_graph_route(graph, route, route_linewidth=4, node_size=0, bgco
 # Показать график
 plt.show()
 ```
+Пример отображенного маршрута между 2мя точками:
+![Figure_route_1](./Figure_route_1.png "Пример отображенного маршрута между 2мя точками")
 
 ## Что почитать:
 - https://osmnx.readthedocs.io/ - документация OSMnx
