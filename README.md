@@ -54,6 +54,28 @@ NetworkX (NX) - это библиотека на языке Python для соз
 
 #### Получение графа дорог с помощью OSMnx
 
+Убедитесь, что у вас установлены следующие пакеты `osmnx`,`networkx`, `matplotlib` в вашей среде Python (`pip install osmnx networkx matplotlib`). <br>
+
+`network_type`: Определяет тип дорожной сети для извлечения. Некоторые доступные значения включают `all` (все типы дорог), `walk` (только пешеходные дорожки), `bike` (только велосипедные дорожки), `drive` (только дороги для автомобилей), `drive_service` (только служебные проезды: внутриквартальные, въездные, парковочные )
+
+```python
+import osmnx as ox
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Указываем местоположение для получения графа дорог
+place_name = "Nur-Sultan, Kazakhstan"
+
+# Получаем граф дорог для указанного местоположения
+graph = ox.graph_from_place(place_name, network_type='drive')
+
+# Отображаем ребра графа дорог
+fig, ax = ox.plot_graph(graph, edge_color='white', edge_linewidth=0.5, node_size=0, show=False)
+
+# Показываем граф
+plt.show()
+```
+
 Для получения графа дорог с помощью OSMnx выполните следующие шаги:
 
 1. Установите OSMnx, выполнив команду `pip install osmnx` в вашей среде Python.
