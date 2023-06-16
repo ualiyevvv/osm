@@ -91,8 +91,8 @@ place_name = "Nur-Sultan, Kazakhstan"
 graph = ox.graph_from_place(place_name, network_type='drive') 
 
 # Задайте координаты двух точек (широта и долгота)
-point1 = ox.distance.nearest_nodes(graph, 71.4375894, 51.1247571)  # Замените значениями реальных координат
-point2 = ox.distance.nearest_nodes(graph, 71.36435335414731, 51.19407083146049)  # Замените значениями реальных координат
+point1 = ox.distance.nearest_nodes(graph, 71.4375894, 51.1247571)  # координаты в ввиде (x, y) долгота, широта
+point2 = ox.distance.nearest_nodes(graph, 71.36435335414731, 51.19407083146049)  # координаты в ввиде (x, y) долгота, широта
 
 # Добавьте геометрию (точки) на граф дорожной сети
 ox.distance.add_edge_lengths(graph)
@@ -106,7 +106,7 @@ distance = sum(ox.utils_graph.get_route_edge_attributes(graph, route, 'length'))
 print(f'Расстояние между точкой 1 и точкой 2: {distance} метров')
 ```
 
-Для отображения маршрут с помощью matplotlib на графике:
+Для отображения маршрута на графике с помощью matplotlib:
 - убедитесь, что у вас установлены следующие пакеты `folium` в вашей среде Python (`pip install folium`)
 - добавьте следующий код в ваш скрипт
 ```python
@@ -121,5 +121,6 @@ plt.show()
 ```
 
 ## Что почитать:
+- https://osmnx.readthedocs.io/ - документация OSMnx
 - https://wiki.openstreetmap.org/wiki/Map_features - описание всех тегов OSM
-- https://habr.com/ru/articles/688556/ чувак на Java работатет с OSM
+- https://habr.com/ru/articles/688556/ - чувак на Java работатет с OSM
