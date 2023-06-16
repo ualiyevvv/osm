@@ -78,6 +78,44 @@ NetworkX (NX) - это библиотека на языке Python для соз
 
 #### Построение маршрута и расчет расстояния с помощью OSMnx
 
+```python
+import osmnx as ox
+import matplotlib.pyplot as plt
+
+# Указываем местоположение для получения графа дорог
+place_name = "Nur-Sultan, Kazakhstan"
+
+# Создайте граф дорожной сети из OpenStreetMap данных
+graph = ox.graph_from_place(place_name, network_type='drive') 
+
+# Задайте координаты двух точек (широта и долгота)
+point1 = ox.distance.nearest_nodes(graph, 71.4375894, 51.1247571)  # Замените значениями реальных координат
+point2 = ox.distance.nearest_nodes(graph, 71.36435335414731, 51.19407083146049)  # Замените значениями реальных координат
+
+# Добавьте геометрию (точки) на граф дорожной сети
+ox.distance.add_edge_lengths(graph)
+
+# Рассчитайте кратчайший путь и расстояние между точками
+route = ox.distance.shortest_path(graph, point1, point2, weight='length')
+
+# Получите длины ребер в маршруте и суммируйте их
+distance = sum(ox.utils_graph.get_route_edge_attributes(graph, route, 'length'))
+
+print(f'Расстояние между точкой 1 и точкой 2: {distance} метров')
+```
+
+Отобразить маршрут с помощью matplotlib
+```python
+# Получите геометрию маршрута
+route_geom = ox.plot_route_folium(graph, route=route, route_color='blue', route_width=4, edge_width=2)
+
+# # Построить граф дорожной сети и отобразить на нем маршрут
+fig, ax = ox.plot_graph_route(graph, route, route_linewidth=4, node_size=0, bgcolor='w')
+
+# Показать график
+plt.show()
+```
+
 Чтобы рассчитать маршрут и получить расстояние между двумя точками с помощью OSMnx, выполните следующие шаги:
 
 1. Убедитесь, что у вас установлен OSMnx в вашей среде Python (`pip install osmnx`).
@@ -89,3 +127,8 @@ NetworkX (NX) - это библиотека на языке Python для соз
 Для более подробной документации и примеров обратитесь к [документации OSMnx](https://osmnx.readthedocs.io/).
 
 Пожалуйста, имейте в виду, что предоставленные ссылки на документацию могут измениться, поэтому всегда рекомендуется искать актуальную документацию и обновления.
+
+
+## Что почитать:
+- https://wiki.openstreetmap.org/wiki/Map_features - описание всех тегов OSM
+- https://habr.com/ru/articles/688556/ чувак на Java работатет с OSM
