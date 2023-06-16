@@ -57,6 +57,8 @@ NetworkX (NX) - это библиотека на языке Python для соз
 
 Параметр `network_type`: определяет тип дорожной сети для извлечения. Некоторые доступные значения включают `all` (все типы дорог), `walk` (только пешеходные дорожки), `bike` (только велосипедные дорожки), `drive` (только дороги для автомобилей), `drive_service` (только служебные проезды: внутриквартальные, въездные, парковочные )
 
+> **Примечание:** `walk`, `bike` отображают все типы дорог почему-то все равно (так что нужно провести дополнительную фильтрацию, если нужно вытащить только пешеходный дорожный граф)
+
 ```python
 import osmnx as ox
 import networkx as nx
@@ -67,9 +69,24 @@ place_name = "Nur-Sultan, Kazakhstan"
 
 # Получаем граф дорог для указанного местоположения
 graph = ox.graph_from_place(place_name, network_type='drive')
+```
 
-# Отображаем ребра графа дорог
-fig, ax = ox.plot_graph(graph, edge_color='white', edge_linewidth=0.5, node_size=0, show=False)
+Фильтруем, чтобы получить только пешеходный дорожный граф:
+```python
+# Создайте копию графа (по желанию)
+filtered_graph = graph.copy()
+
+# Итерируйтесь по каждому ребру графа
+for u, v, k, data in graph.edges(keys=True, data=True):
+    # Проверьте тип дороги на пешеходные тропы
+    if "footway" not in data["highway"] and "path" not in data["highway"]:
+        # Если тип дороги не является пешеходной тропой, удаляем ребро из графа
+        filtered_graph.remove_edge(u, v, k)
+```
+
+```python
+# Отображаем ребра графа дорог (если хотите отобразить отфильтрованный, то graph замените на filtered_graph)
+fig, ax = ox.plot_graph(graph, edge_color='white', edge_linewidth=0.5, node_size=0, show=False) 
 
 # Показываем граф
 plt.show()
@@ -80,6 +97,9 @@ plt.show()
 
 Пример отображенного дорожного графа с `network_type="all"` (все типы дорог):
 ![Figure_All_Graph.png](./figure1.png "Пример отображенного дорожного графа 'все типы дорог'")
+
+Пример отображенного пешеходного дорожного графа после фильтрации (только пешеходные):
+![Figure_Walk_Filtered_Graph.png](./figure1.png "Пример отображенного пешеходного дорожного графа после фильтрации (только пешеходные)")
 
 ### Получение объектов с помощью OSMnx
 
