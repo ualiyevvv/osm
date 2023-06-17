@@ -105,7 +105,7 @@ plt.show()
 Убедитесь, что у вас установлены следующие пакеты `osmnx`,`matplotlib` в вашей среде Python (`pip install osmnx matplotlib`).
 > **Примечание:** чтобы получить маршрут от точки A к точке B !именно по дорожному графу, необходимо сначала получить ближайший узел дорожного графа к заданной вами координате 
 
-> В примере ниже получаем маршрут используя `ox.distance.shortest_path` - кратчайший путь по алгоритму Дейкстры, но также имейте ввиду, что можно получить заданное количество кратчайших путей по алгоритму Йена [подробнее в документации](https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.distance.k_shortest_paths)
+> В примере ниже получаем маршрут используя `ox.distance.shortest_path` - кратчайший путь по алгоритму Дейкстры, но также имейте ввиду, что можно использовать `osmnx.distance.k_shortest_paths` - получить k заданное количество кратчайших путей по алгоритму Йена [подробнее в документации](https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.distance.k_shortest_paths)
 
 ```python
 import osmnx as ox
