@@ -146,7 +146,7 @@ fig, ax = ox.plot_graph_route(graph, route, route_linewidth=4, node_size=0, bgco
 # Показать график
 plt.show()
 ```
-Пример отображенного маршрута между 2мя точками:
+Пример отображенного маршрута между 2мя точками с `network_type='drive'`:
 ![Figure_route_1](./Figure_route_1.png "Пример отображенного маршрута между 2мя точками")
 
 
